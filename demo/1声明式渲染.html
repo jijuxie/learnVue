@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>声明式渲染</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h2>数据双向绑定</h2>
+    <div id="app">
+        {{message}}
+    </div>
+    <h2>属性绑定
+    </h2>
+    <div id="app_2" v-bind:title='message'>
+        叶面积在提示
+    </div>
+    <h2>条件与循环</h2>
+    <div id='app_3'>
+        <p v-if="seen">这是vueiftrue</p>
+        <p v-if="seen2">这是vueiffalse</p>
+    </div>
+    <h2>循环</h2>
+    <div id='app_4'>
+        <ul v-for="item in items">
+            <ol>
+                {{item.name}}vvvvvvv{{item.age}}
+            </ol>
+        </ul>
+    </div>
+    <h2>表单绑定</h2>
+    <div id='app_5'>
+        <input type="text" name="name" v-model="message">
+    </div>
+
+    <h2>方法</h2>
+    <div id='app_6'>
+        <button type="" v-on:click="meth1">click</button>
+    </div>
+    <h2>组件化
+    </h2>
+    <div id='app_7'>
+   <el1 v-bind:attr_1="asd"></el1>
+   </div>
+    <script>
+Vue.component('el1', {
+    props:['attr_1'],
+    template:`<li>{{attr_1}}</li>`
+})
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        });
+        var app_2 = new Vue({
+            el: '#app_2',
+            data: {
+                message: '页面加载于' + new Date()
+            }
+        });
+        var app3 = new Vue({
+            el: '#app_3',
+            data: {
+                seen: true,
+                seen2: false
+            }
+        })
+        var app4 = new Vue({
+            el: '#app_4',
+            data: {
+                items: [
+                    { name: '小明', age: 12 },
+                    { name: '小明', age: 12 },
+                    { name: '小明', age: 12 }
+                ]
+            }
+        })
+        var app5=new Vue({
+            el:'#app_5',
+            data:{
+                message:'namne is wang Hong Hong!'
+            },
+            methods:{
+                
+            }
+        })
+        var app6=new Vue({
+            el:'#app_6',
+            methods:{
+                meth1:function(){
+                    alert(1);
+                }
+            }
+
+        })
+        var app7=new Vue({
+            el:'#app_7',
+            data:{
+                asd:'sdsd'
+            }
+        })
+    </script>
+</body>
+
+</html>
