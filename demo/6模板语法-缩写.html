@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>6模板语法-缩写</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app1'>
+        <p :class='on1'>{{on1}}</p>
+        <button type="" @click='f1'></button>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                on1: 'abcd'
+            },
+            methods: {
+                f1: function() {
+                    alert(1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

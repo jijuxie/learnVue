@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3模板语法-插值</title>
+    <style>
+        .a {
+            background-color: #f0f;
+        }
+        
+        .b {
+            background-color: #ff0;
+        }
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h4>文本</h4>
+    <div id='app1'>
+        <li>{{message}}</li>
+    </div>
+    <h4>只进行一次插值</h4>
+    <div id='app2' v-once>
+        <li>{{message}}</li>
+    </div>
+    <h4>纯html</h4>
+    <div id='app3' v-html="theHtml">
+
+    </div>
+    <h4>属性绑定</h4>
+    <div id='app4' v-bind:class="class1">
+        <button v-on:click="theClick">点击</button>
+    </div>
+    <h4>js表达式</h4>
+    <div id='app5'>
+        {{message=='hahah'?'bbb':'aaa'}}
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: '数据1'
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: '只进行一次插值'
+            }
+        })
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                theHtml: '<h1>纯标签模式</h1>'
+            }
+        })
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                class1: 'a'
+            },
+            methods: {
+                theClick: function() {
+                    this.class1 = 'b';
+                }
+            }
+        })
+        var app5 = new Vue({
+            el: '#app5',
+            data: {
+                message: 'hahah'
+            }
+        })
+    </script>
+</body>
+
+</html>

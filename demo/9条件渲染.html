@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h4>v-if</h4>
+    <div id='app1'>
+        <p v-if="message">
+            展示
+        </p>
+        <p v-if="message2">
+            不展示
+        </p>
+        <h6>template</h6>
+        <!--使用tempalte这个虚拟属性替代div使其不带任何属性-->
+        <template v-if="message">
+            <p>展示</p>
+        </template>
+        <template v-if='message2'>
+            <p>不展示</p>
+        </template>
+        <h6>if-else</h6>
+        <template v-if="message">
+            if
+        </template>
+        <template v-else>
+            else
+        </template>
+        <h6>v-else-if</h6>
+        <template v-if="message">
+            if
+        </template>
+        <template v-else-if="message2">
+            v-else-if
+        </template>
+        <template v-else>
+            else
+        </template>
+        <h6>使用key管理可复用元素</h6>
+    <!--对比下相同的元素，会自我复用给俺们设定不同的key值就可以避免复用了-->
+    <template v-if="message">
+<input type="" name="" value="" key="key1">
+    </template>
+    <template v-else>
+<input type="" name="" value="" key="key2">
+    </template>
+    </div>
+    <h4>v-show</h4>
+    <div id='app2'>
+ <p v-show="message">sdasd</p>
+ <p v-show="message2">sdsdsddddd</p>
+ </div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: true,
+                message2: false
+            }
+        })
+        var app2=new Vue({
+            el:'#app2',
+            data:{
+                message:true,
+                message2:false
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10循环渲染</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h4>基础用法</h4>
+    <div id='app1'>
+        <ul>
+            <li v-for="list in lists">num是{{list.num}}name是{{list.name}}sex是{{list.sex}}</li>
+        </ul>
+        <h6>template</h6>
+        <ul>
+            <template v-for="list in lists">
+                <li>num是{{list.num}}name是{{list.name}}sex是{{list.sex}}</li>
+            </template>
+        </ul>
+    <h6>对象迭代
+
+    </h6>
+    <template v-for="(value,index,key) in lists">
+<li>
+{{key}},{{value}},{{index}}
+</li>
+    </template>
+    <h6>整数迭代</h6>
+    <li v-for="n in 10">{{n}}</li>
+    </div>
+    <h6>数组更新检测</h6>
+    使用“push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()”
+<h6>过滤排序</h6>
+<div id='app3'>
+    
+</div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                lists: [
+                    { num: 1, name: 'zp', sex: '男' },
+                    { num: 2, name: 'zp2', sex: '女' },
+                    { num: 3, name: 'zp3', sex: '女' },
+                    { num: 4, name: 'zp4', sex: '男' },
+                ]
+            }
+        })
+        var app3=new Vue({
+            el:'#app3',
+            data:{
+                message:[
+1,2,3,4,5,6,7,8,9,10
+                ]
+            }
+            ,
+            computed:{
+               //通过计算转化为所需数据
+            }
+        })
+    </script>
+</body>
+
+</html>

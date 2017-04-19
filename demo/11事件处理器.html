@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <p>{{counter}}</p>
+        <button type="" @click='add'>加一</button>
+        <h4>内联处理方法</h4>
+        <button type="" @click='addNumber(10)'>加十</button>
+        <h4>事件传入</h4>
+        <button @click='eventdo($event)'>
+
+        </button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'message',
+                counter: 0
+            },
+            methods: {
+                add: function () {
+                    this.counter += 1;
+                },
+                addNumber: function (number) {
+                    this.counter += number;
+                },
+                eventdo: function (event) {
+                    console.log(event);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

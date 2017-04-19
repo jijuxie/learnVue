@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>8class与style绑定</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h4>绑定html，class</h4>
+    <div id='app1'>
+        <!--这是对象语法-->
+        <p class="appclass" :class="{'active':class_active,'hide':class_hide}">
+            asdadsadsdasddasd
+        </p>
+        <!--这是数组语法-->
+        <p class="appclass" :class="[theActive,theHide]">
+            asdadsadsdasddasd
+        </p>
+
+    </div>
+    <h4>
+        绑定html，style
+    </h4>
+    <div id='app2'>
+        <!--对象语法绑定-->
+<p :style="styleObj">sjfsdjdfjs</p>
+<!--数组语法可以绑定多个style对象-->
+<p :style='[styleObj,styleObj2]'>sfsfsfsdfsfssdfsdf</p>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                class_active: true,
+                class_hide: false,
+                theActive: 'act',
+                theHide: 'hide'
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                styleObj:{
+                    color:'red',
+                    fontSize:'30px'
+                },
+                styleObj2:{
+                    background:'#ccc'
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
