@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.表单控件绑定</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app1'>
+        <h4>使用v-model</h4>
+        <input type="text" name="name" v-model="message">
+        <p>上面输入框的信息是{{message}}</p>
+        <h4>复选框</h4>
+        <input type="checkbox" name="" v-model='checkbox'>
+        <p>上面复选框的结果{{checkbox}}</p>
+<h4>多个复选框绑定到一个上面</h4>
+<input type="checkbox" name="" v-model='checkbox2' value="神">
+<input type="checkbox" name="" v-model='checkbox2' value='鬼'>
+<input type="checkbox" name="" v-model='checkbox2' value='魔·'>
+<p>选中的数据{{checkbox2}}</p>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: 'message',
+                checkbox: false,
+                checkbox2:[],
+            },
+            watch: {
+                checkbox : function (bfVal, afVal) {
+                    console.log(bfVal);
+                    console.log(afVal);
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

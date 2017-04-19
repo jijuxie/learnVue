@@ -8,15 +8,26 @@
 </head>
 
 <body>
-    <div id='app'>
+    <div id='app' @keyup.enter='getAlert'>
         <p>{{counter}}</p>
         <button type="" @click='add'>加一</button>
         <h4>内联处理方法</h4>
         <button type="" @click='addNumber(10)'>加十</button>
-        <h4>事件传入</h4>
-        <button @click='eventdo($event)'>
-
+        <h4>事件传入
+            < /h4>
+                <button @click='eventdo($event)'>
         </button>
+                <h4>
+                    事件修饰符
+                </h4>
+                <div>
+                    。stop。prevent。capture。self。once
+                </div>
+                <h4>按键别名</h4>
+               <input type="text" @keyup.enter='getAlert'>
+                <div >
+
+                </div>
     </div>
     <script>
         var app = new Vue({
@@ -34,9 +45,13 @@
                 },
                 eventdo: function (event) {
                     console.log(event);
+                },
+                getAlert: function () {
+                    alert('ssdd');
                 }
             }
         })
+      
     </script>
 </body>
 
