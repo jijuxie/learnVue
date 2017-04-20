@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.slot</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<h4>Slot内容分发</h4>
+<div id='app'>
+    <comp1>父标签给予值</comp1>
+    <comp1></comp1>
+    <h4>slot多个具有名字</h4>
+<comp2>
+    <p slot='a'>aaaaa</p><p slot='b'>bbbbb</p>
+</comp2>
+</div>
+
+<div>
+    
+</div>
+<script>
+    Vue.component('comp1', {
+        template:`<div>
+        <h6>这是标签本身的东西</h6>
+        <slot>
+        当父没有给这个标签填写内容时则会显示
+        </slot>
+        </div>`
+    })
+    Vue.component('comp2', {
+        template:`
+        <div>
+        <h3>这是组件本身的</h3>
+        <slot name='a'>真是将要被替换name为a </slot>
+         <slot name='b'>真是将要被替换name为b</slot>
+        </div>
+        
+        `
+    })
+    var app=new Vue({
+        el:'#app',
+
+    })
+</script>
+</body>
+
+</html>

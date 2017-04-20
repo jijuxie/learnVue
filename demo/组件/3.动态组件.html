@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <keep-alive>
+        <!--添加keep-alive避免重新被渲染-->
+       
+        <component :is='comp'>
+
+        </component>
+         </keep-alive>
+    </div>
+    <script>
+        Vue.component('com1', {
+            template: `
+    <div>
+    com1
+    </div>
+    `
+        });
+        Vue.component('com2', {
+            template: `
+    <div>
+    com2
+    </div>
+    `
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                comp: 'com1'
+            }
+        })
+        var i = 1;
+        setInterval(function () {
+            if (i === 1) {
+                app.comp = 'com1'
+               
+                i = 2;
+            } else {
+                app.comp = 'com2'
+               
+                i = 1;
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

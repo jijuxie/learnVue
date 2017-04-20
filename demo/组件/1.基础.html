@@ -8,19 +8,85 @@
 </head>
 
 <body>
-<div id='app'>
-    <myapp1></myapp1>
-</div>
-<script>
-    //注册组件
-    Vue.component('myapp1', {
-        template:'<div>dsasaadasdad</div>'
-    })
-    //注册根组件
-    new Vue({
-        el:'#app',
-    })
-</script>
+    <div id='app'>
+        <myapp1></myapp1>
+        <myapp2></myapp2>
+        <!--is-->
+        <table>
+            <tr>
+                没有使用vue组件
+            </tr>
+            <mytr></mytr>
+            <tr is='mytr'></tr>
+        </table>
+        <h4>data必须是方法而且不能指向同一个obj</h4>
+        <div2></div2>
+        <div2></div2>
+        <h4>通过props向组件内部传递数据</h4>
+        <!--当使用驼峰法命名prop时需要在使用时将其转化为羊肉串命名法，最好使用字符串模板-->
+        <div2 message1='1111111' message2='2222222'></div2>
+        <h4>验证</h4>
+        <filt prop-A='str' prop-B='asdas' prop-C='sdad' prop-E={a:'b'} prop-F=10>
+           
+        </filt>
+    </div>
+    <script>
+        //注册组件
+        Vue.component('myapp1', {
+            template: '<div>dsasaadasdad</div>'
+        })
+        Vue.component('mytr', {
+            template: '<tr>sssss</tr>'
+        })
+        Vue.component("div2", {
+            template: '<div @click="data2+=1">{{data2}}{{message1}}{{message2}}</div>'
+            ,
+            //props是由父组件传递过来的数据
+            props: ['message1', 'message2'],
+            //data是自定义的静态数据
+            data: function () {
+                return { data2: 0 }
+            }
+        })
+        Vue.component('filt', {
+            template: `<div> {{propA}}   {{propB}}   {{propC}}   {{propD}}   {{propE}}   {{propF}}</div>`,
+            props: {
+                propA: Number,//指定格式
+                propB: [String, Number],//指定多种格式
+                propC: {
+                    type: String,//必须有且必须为string
+                    required: true,
+                },
+                propD: {
+                    type: Number,//默认值为100
+                    default: 100,
+                },
+                propE: {
+                    type: Object,//必须为obj且默认值由一个工厂函数返回
+                    default: function () {
+                        return { message: 100 };
+                    }
+
+                },
+                propF: {//自定义验证函数
+                    validator: function (value) {
+                        return value > 0;
+                    }
+                }
+            }
+        })
+        //注册根组件
+        new Vue({
+            el: '#app'
+            ,
+            //局部注册组件
+            components: {
+                myapp2: {
+                    template: '<li>asdasasd</li>'
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>
