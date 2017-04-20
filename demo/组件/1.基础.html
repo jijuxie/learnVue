@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.组件基础</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id='app'>
+    <myapp1></myapp1>
+</div>
+<script>
+    //注册组件
+    Vue.component('myapp1', {
+        template:'<div>dsasaadasdad</div>'
+    })
+    //注册根组件
+    new Vue({
+        el:'#app',
+    })
+</script>
+</body>
+
+</html>

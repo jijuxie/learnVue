@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>11.表单控件绑定</title>
+    <title>12.表单控件绑定</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
@@ -15,11 +15,40 @@
         <h4>复选框</h4>
         <input type="checkbox" name="" v-model='checkbox'>
         <p>上面复选框的结果{{checkbox}}</p>
-<h4>多个复选框绑定到一个上面</h4>
-<input type="checkbox" name="" v-model='checkbox2' value="神">
-<input type="checkbox" name="" v-model='checkbox2' value='鬼'>
-<input type="checkbox" name="" v-model='checkbox2' value='魔·'>
-<p>选中的数据{{checkbox2}}</p>
+        <h4>多个复选框绑定到一个上面</h4>
+        <input type="checkbox" name="" v-model='checkbox2' value="神">
+        <input type="checkbox" name="" v-model='checkbox2' value='鬼'>
+        <input type="checkbox" name="" v-model='checkbox2' value='魔·'>
+        <h4>单选按钮</h4>
+        <input type="radio" name="" value="one" v-model="radio">
+        <input type="radio" name="" value="two" v-model="radio">
+        <p>按钮绑定：{{radio}}</p>
+        <p>选中的数据{{checkbox2}}</p>
+        <h4>列表选项</h4>
+        <select v-model="selected">
+    <option value="a">a</option>
+    <option value="b">b</option>
+    <option value="c">c</option>
+</select>
+        <p>选中的select{{selected}}</p>
+        <h4>多选列表</h4>
+
+        <select v-model="selected2" multiple style="width: 50px">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+        <span>Selected: {{ selected2 }}</span>
+        <h4>动态绑定value </h4>
+        <input type="checkbox" v-model="bbbb" :true-value='value.a' :false-value='value.b'>
+        <p>现在的状态{{bbbb}}</p>
+        <h4>change事件触发更新</h4>
+        <input type="text" v-model.lazy="change">
+        <h4>转化number</h4>
+        <input type="text" name="" v-model.number="number">
+        <h4>trim
+        </h4>
+        <input type="text" v-model.trim="trim">
     </div>
     <script>
         var app1 = new Vue({
@@ -27,12 +56,27 @@
             data: {
                 message: 'message',
                 checkbox: false,
-                checkbox2:[],
+                checkbox2: [],
+                radio: null,
+                selected: null,
+                selected2: [],
+                value: {
+                    a: 'aaaaaa',
+                    b: 'bbbbbb',
+                },
+                bbbb: 'aaaaaa',
+                change: 'cccccc',
+                number:123132131,
+                trim:'asdasdsa'
             },
             watch: {
-                checkbox : function (bfVal, afVal) {
+                checkbox: function (bfVal, afVal) {
                     console.log(bfVal);
                     console.log(afVal);
+                },
+                change: function (a, b) {
+                    alert(a);
+                    alert(b);
                 }
 
             }
