@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s
+        }
+        
+        .fade-enter,
+        .fade-leave-active {
+            opacity: 0
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <button @click='doShow'>转换</button>
+        <transition name='fade'>
+            <comp1 :str='str' v-if='show'></comp1>
+            <!--自定义过度类名，其优先级要高于name-->
+            <transition name='fade2' enter-active-class="animated tada" leave-active-class="animated bounceOutRight" , enter-class='animated'
+                leave-active-class='animated'>
+                <!--所有的过渡动画钩子-->
+                <!--添加css属性会使其跳过css检测-->
+                <transition ：css="false"   @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled" @before-leave="beforeLeave"
+                    @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
+
+                </transition>
+
+            </transition>
+
+        </transition>
+
+    </div>
+    <script>
+        Vue.component('comp1', {
+            template: `<div>
+    {{str}}
+    </div>`,
+            props: ['str'],
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'message',
+                str: 'skdaskjsk',
+                show: true,
+            },
+            methods: {
+                doShow: function () {
+                    this.show = !this.show;
+                },
+                // --------
+                // 进入中
+                // --------
+                beforeEnter: function (el) {
+                    // ...
+                },
+                // 此回调函数是可选项的设置
+                // 与 CSS 结合时使用
+                enter: function (el, done) {
+                    // done是动画结束时调用
+                    done()
+                },
+                afterEnter: function (el) {
+                    // ...
+                },
+                enterCancelled: function (el) {
+                    // ...
+                },
+                // --------
+                // 离开时
+                // --------
+                beforeLeave: function (el) {
+                    // ...
+                },
+                // 此回调函数是可选项的设置
+                // 与 CSS 结合时使用
+                leave: function (el, done) {
+                     // done是动画结束时调用.
+                    done()
+                },
+                afterLeave: function (el) {
+                    // ...
+                },
+                // leaveCancelled 只用于 v-show 中
+                leaveCancelled: function (el) {
+                    // ...
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

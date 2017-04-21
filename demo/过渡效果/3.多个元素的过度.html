@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+     <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s
+        }
+        
+        .fade-enter,
+        .fade-leave-active {
+            opacity: 0
+        }
+    </style>
+</head>
+
+<body>
+<div id='app'>
+    <h4>多元素的过度v-if/v-else</h4>
+    <transition name='fade'>
+        <!--这里的过度用相同标签会有问题要用到key-->
+    <span v-if="show1" @click='f1'>show1为true</span>
+    <p v-else @click='f1'>show1为false</p>
+    </transition>
+    <h4>多元素过度key</h4>
+     <transition name='fade'>
+        <!--这里的过度用相同标签会有问题要用到key-->
+    <p v-if="show1" @click='f1'key="key1">show1为true</p>
+    <p v-else @click='f1' key='key2'>show1为false</p>
+            
+    </transition>
+    <h4>可以只通过改变key值来代替ifelse</h4>
+        <transition name='fade'>
+        <!--这里的过度用相同标签会有问题要用到key-->
+    <p  @click='f1' :key="key1">{{key1}}</p>
+    
+            
+    </transition >
+    <h4>过渡模式</h4>
+    <transition name='fade' mode='out-in'>
+          <p  @click='f2' :key="key2" > 过渡模式out-in{{key2}}</p>
+    </transition>
+    <transition name='fade' mode='in-out'>
+          <p  @click='f3' :key="key3" >过渡模式in-out{{key3}}</p>
+    </transition>
+</div>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'message',
+            show1:true,
+            key1:'1',
+            key2:'1',
+            key3:'1'
+        }
+        ,
+        methods:{
+            f1:function(){
+                if(this.key1==1){
+                   
+                    this.key1=2;
+                }else{
+                   
+                      this.key1=1;
+                }
+            },
+            f2:function(){
+                if(this.key2==1){
+                   
+                    this.key2=2;
+                }else{
+                   
+                      this.key2=1;
+                }
+            },
+            f3:function(){
+                if(this.key3==1){
+                   
+                    this.key3=2;
+                }else{
+                   
+                      this.key3=1;
+                }
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

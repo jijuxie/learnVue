@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+
+    </div>
+    <script>
+        //自定义全局之指令v-focus
+        Vue.directive('focus', {
+            //当使用此指令的元素插入dom时会直接产生效果
+            inserted: function (el) {
+                el.focus();
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'message'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <!--子组件索引-->
+        <comp1 ref="one"></comp1>
+        <comp1 ref="two"></comp1>
+        <comp3></comp3>
+    </div>
+    <script>
+        //递归组件，当组件存在name属性时，可以递归的调用自己，但是要有判断语句跳出递归循环，不然会导致错误
+Vue.component('comp3', {
+    name:'comp3',
+    template:`<comp3></comp3>`,
+
+})
+
+        Vue.component('comp2', function (resolve, reject) {
+            //异步组件
+            // 通过异步方法callback内
+            resolve({
+                template: '<div>I am async!</div>'
+            })
+// 可以异步产生组件
+
+        })
+        Vue.component('comp1', {
+            template: `
+        <div>aaaaaaaaa</div>
+        `,
+            data: function () {
+                return { aaa: 'aaaa' }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'message'
+            }
+
+        })
+        setTimeout(function () {
+            //访问子组件的应急方案通过refs
+            alert(app.$refs.one.aaa);
+        }, 1000)
+
+    </script>
+</body>
+
+</html>

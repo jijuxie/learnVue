@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s
+        }
+        
+        .fade-enter,
+        .fade-leave-active {
+            opacity: 0
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <transition name='fade' mode='out-in'>
+            
+                
+            
+
+            <component :is="componentId" ><button type="" @click='f1'>改变</button></component>
+
+        </transition>
+    </div>
+    <script>
+        Vue.component('cmp1', {
+            template: `
+        <div>
+        一一一
+        <slot></slot>
+        </div>
+        `
+        });
+        Vue.component('cmp2', {
+            template: `
+        <div>二二二
+        <slot></slot>
+        </div>
+        `
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'message',
+                componentId: 'cmp1'
+            },
+            methods: {
+                f1: function () {
+                    
+                    if (this.componentId == 'cmp1') {
+                        this.componentId = 'cmp2';
+                    } else {
+                        this.componentId = 'cmp1';
+                    }
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

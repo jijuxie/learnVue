@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2vue实例</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<style>
+.an{
+ transition: opacity 9s
+}
+.an-a{
+opacity: 0;
+}
+</style>
+<body>
+<div id='app'>
+    <transition appear appear-class="an-a"
+  appear-active-class="an">
+    <h2>这是要产生动画的元素</h2>
+    </transition>
+    <!--可以通过钩子产生动画-->
+    <transition 
+     appear
+  v-on:before-appear="customBeforeAppearHook"
+  v-on:appear="customAppearHook"
+  v-on:after-appear="customAfterAppearHook">
+        <h2>这是要产生动画的元素2</h2>
+    </transition>
+</div>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'message',
+
+        }
+    })
+</script>
+</body>
+
+</html>
